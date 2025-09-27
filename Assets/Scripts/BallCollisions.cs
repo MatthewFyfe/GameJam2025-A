@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallCollisions : MonoBehaviour
 {
-    public ControlPoint cp_ref;
+    public ControlPointSP cp_ref;
 
     void OnCollisionEnter(Collision collision)
     {
