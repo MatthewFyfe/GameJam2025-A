@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1069446475656110590}
   - component: {fileID: 2750016162200861036}
   - component: {fileID: 7082522629241481366}
+  - component: {fileID: 8216334629138946102}
   m_Layer: 0
   m_Name: GS_PlayerGolfBall
   m_TagString: Untagged
@@ -94,7 +95,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737660502507717477}
-  m_Material: {fileID: 13400000, guid: b1892f13b5cdd704684b92f73e480c48, type: 2}
+  m_Material: {fileID: 13400000, guid: 8e9a00ed6e2e5b241929e36f0fea758a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -118,7 +119,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 30
   m_Drag: 0.3
-  m_AngularDrag: 1
+  m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -180,6 +181,19 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &8216334629138946102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737660502507717477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d201ff4905ece34f88d7167ebe86b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cp_ref: {fileID: 8794685820578663738}
 --- !u!1 &1039298451105113138
 GameObject:
   m_ObjectHideFlags: 0

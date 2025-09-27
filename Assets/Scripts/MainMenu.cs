@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void Host()
     {
-        SceneManager.LoadScene("GS_Test");
+        SceneManager.LoadScene("GS_Level");
     }
 
     public void Join()
     {
-        SceneManager.LoadScene("GS_Test");
+        SceneManager.LoadScene("GS_Level");
     }
 
     public void Exit()

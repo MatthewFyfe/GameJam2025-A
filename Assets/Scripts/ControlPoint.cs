@@ -13,6 +13,8 @@ public class ControlPoint : NetworkBehaviour
 
     public float shootPower = 30f;
 
+    public float angularDrag_default = 2f;
+
     public LineRenderer line;
 
     public GameObject playerController;
@@ -55,6 +57,26 @@ public class ControlPoint : NetworkBehaviour
         {
             playerBall.velocity = playerController.transform.forward * shootPower;
             line.gameObject.SetActive(false);
+        }
+    }
+
+    //Play SFX if needed, update drag to stop rolling on slopes
+    public void HandleCollision(Collision collision)
+    {
+        //Debug.Log(collision.collider.material);
+        var pm = collision.collider.material;
+
+        if (pm.name.Contains("Grass"))
+        {
+            playerBall.angularDrag = angularDrag_default * 2;
+        }
+        else if (pm.name.Contains("Stone"))
+        {
+            playerBall.angularDrag = angularDrag_default;
+        }
+        else if (pm.name.Contains("Rough"))
+        {
+            playerBall.angularDrag = angularDrag_default * 200;
         }
     }
 }
