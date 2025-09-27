@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Object;
 
-public class ControlPoint : MonoBehaviour
+public class ControlPoint : NetworkBehaviour
 {
     float xRot, yRot = 0f;
 
@@ -14,6 +15,8 @@ public class ControlPoint : MonoBehaviour
 
     public LineRenderer line;
 
+    public GameObject playerController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,16 @@ public class ControlPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerBall.position;
+        if (!IsOwner)
+            return;
+
+        if (IsOwner && CameraFollow.target == null)
+        {
+            //CameraFollow.target = transform.Find("CameraTarget").gameObject.transform;
+            CameraFollow.target = GameObject.Find("CameraTarget").transform;
+        }
+
+        playerController.transform.position = playerBall.position;
 
         if(Input.GetMouseButton(0))
         {
@@ -33,15 +45,15 @@ public class ControlPoint : MonoBehaviour
             {
                 yRot = -35f;
             }
-            transform.rotation = Quaternion.Euler(yRot, xRot, 0f);
+            playerController.transform.rotation = Quaternion.Euler(yRot, xRot, 0f);
             line.gameObject.SetActive(true);
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, transform.position + transform.forward * 4f);
+            line.SetPosition(0, playerController.transform.position);
+            line.SetPosition(1, playerController.transform.position + playerController.transform.forward * 4f);
         }
 
         if(Input.GetMouseButtonUp(0))
         {
-            playerBall.velocity = transform.forward * shootPower;
+            playerBall.velocity = playerController.transform.forward * shootPower;
             line.gameObject.SetActive(false);
         }
     }

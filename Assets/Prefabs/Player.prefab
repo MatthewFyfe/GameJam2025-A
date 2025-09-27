@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7890748026857692710}
   - component: {fileID: 1069446475656110590}
   - component: {fileID: 2750016162200861036}
+  - component: {fileID: 7082522629241481366}
   m_Layer: 0
   m_Name: GS_PlayerGolfBall
   m_TagString: Untagged
@@ -134,6 +135,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7082522629241481366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737660502507717477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1540026107833617525}
+  _networkObjectCache: {fileID: 0}
+  _componentConfiguration: 0
+  _synchronizeParent: 0
+  _packing:
+    Position: 1
+    Rotation: 1
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSensitivity: 0.001
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSensitivity: 0.001
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!1 &1039298451105113138
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +190,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4219831492810453300}
   - component: {fileID: 1540026107833617525}
-  - component: {fileID: -2958828688280975205}
+  - component: {fileID: 8794685820578663738}
+  - component: {fileID: 2637941702753498066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -182,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 0
-  WasActiveDuringEdit: 1
+  WasActiveDuringEdit: 0
   WasActiveDuringEdit_Set1: 1
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
@@ -222,7 +269,7 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
     IsValid: 1
---- !u!114 &-2958828688280975205
+--- !u!114 &8794685820578663738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,12 +278,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 1039298451105113138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1dcccf287e17864ab2da957c7fbecb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 29b5d7ba707c424438ca8ac5998aaad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 1540026107833617525}
   _networkObjectCache: {fileID: 0}
+  playerBall: {fileID: 2750016162200861036}
+  rotationSpeed: 5
+  shootPower: 30
+  line: {fileID: 8170612382670319128}
+  playerController: {fileID: 8708484936279925173}
+--- !u!114 &2637941702753498066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039298451105113138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1540026107833617525}
+  _networkObjectCache: {fileID: 0}
+  _componentConfiguration: 0
+  _synchronizeParent: 0
+  _packing:
+    Position: 1
+    Rotation: 1
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSensitivity: 0.001
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSensitivity: 0.001
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!1 &3426471371397843152
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +519,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3663302010217389627}
-  - component: {fileID: 4722057936716455073}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -446,19 +542,3 @@ Transform:
   - {fileID: 8435485082619068330}
   m_Father: {fileID: 4219831492810453300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4722057936716455073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8708484936279925173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b5d7ba707c424438ca8ac5998aaad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBall: {fileID: 2750016162200861036}
-  rotationSpeed: 5
-  shootPower: 30
-  line: {fileID: 8170612382670319128}
