@@ -1,68 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3179107480454695322
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1686861452128498547}
-  m_Layer: 0
-  m_Name: CameraTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1686861452128498547
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3179107480454695322}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9200992421832068590}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4555655275210027675
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9200992421832068590}
-  m_Layer: 0
-  m_Name: PlayerController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9200992421832068590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4555655275210027675}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1686861452128498547}
-  m_Father: {fileID: 9168495810754030354}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5074980082303285374
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +154,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9168495810754030354}
-  - component: {fileID: 3388350028916486379}
   m_Layer: 0
-  m_Name: PlayerSP
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,28 +174,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9200992421832068590}
   - {fileID: 1403149451466810698}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3388350028916486379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7307024405170651532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c595cd95cbef70d408922f351e2ec3e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBall: {fileID: 5041226932137475066}
-  rotationSpeed: 5
-  shootPower: 30
-  angularDrag_default: 2
-  line: {fileID: 1547940281016661218}
-  playerController: {fileID: 4555655275210027675}
 --- !u!1 &8647377218772432768
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +190,7 @@ GameObject:
   - component: {fileID: 7806920144526206135}
   - component: {fileID: 5607652637994879123}
   - component: {fileID: 5041226932137475066}
-  - component: {fileID: 7665976241270592027}
+  - component: {fileID: 8334390625666347047}
   m_Layer: 0
   m_Name: GS_PlayerGolfBall
   m_TagString: Untagged
@@ -325,7 +242,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9b9770ac6f63de140adc012e6dc86f7d, type: 2}
+  - {fileID: 2100000, guid: 8345a7d8c40c988498a4a6d60b3837c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -395,7 +312,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7665976241270592027
+--- !u!114 &8334390625666347047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,7 +321,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8647377218772432768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d201ff4905ece34f88d7167ebe86b27, type: 3}
+  m_Script: {fileID: 11500000, guid: c02ec739aa124384cb57caf843a022b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cp_ref: {fileID: 0}
+  playerTarget: {fileID: 0}
+  speed: 30
+  rb: {fileID: 5041226932137475066}
+  mod_material: {fileID: 2100000, guid: 8345a7d8c40c988498a4a6d60b3837c1, type: 2}
