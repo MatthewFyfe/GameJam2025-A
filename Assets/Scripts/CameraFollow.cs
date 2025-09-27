@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
+    public static Transform target;
 
     public float speed = 15f;
 
@@ -22,7 +22,10 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, speed * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, speed * Time.deltaTime);
+        if(target != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, target.position, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, speed * Time.deltaTime);
+        }
     }
 }
