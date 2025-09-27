@@ -301,6 +301,7 @@ MonoBehaviour:
   playerBall: {fileID: 2750016162200861036}
   rotationSpeed: 5
   shootPower: 30
+  angularDrag_default: 2
   line: {fileID: 8170612382670319128}
   playerController: {fileID: 8708484936279925173}
 --- !u!114 &2637941702753498066
