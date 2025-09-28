@@ -26,6 +26,7 @@ public class ControlPointSP : MonoBehaviour
     public GameObject diedCanvas;
 
     public AudioSource mainCameraAudio;
+    public AudioClip fadingAudio;
     public AudioClip diedClip;
     public AudioClip golfClip;
     public AudioClip oobClip;
@@ -49,6 +50,7 @@ public class ControlPointSP : MonoBehaviour
 
     public TMP_Text groundedTXT;
     public TMP_Text velocityTXT;
+    public TMP_Text victoryTXT;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +65,7 @@ public class ControlPointSP : MonoBehaviour
         if(playerHP <= 0 && aliveFlag)
         {
             aliveFlag = false;
-            Debug.Log("YOU DIED");
+            //Debug.Log("YOU DIED");
             mainCameraAudio.clip = diedClip;
             mainCameraAudio.Play();
 
@@ -207,9 +209,16 @@ public class ControlPointSP : MonoBehaviour
         }
 
          //did we win?
-        if(dragonHP <= 0)
+        if(dragonHP <= 3 && aliveFlag)
         {
-            
+            victoryTXT.text = "VICTORY ACHIEVED";
+
+            aliveFlag = false;
+            //Debug.Log("YOU WIN");
+            mainCameraAudio.clip = dragonDieClip;
+            mainCameraAudio.Play();
+
+            diedCanvas.SetActive(true);
         }
     }
 
@@ -224,4 +233,6 @@ public class ControlPointSP : MonoBehaviour
         //Debug.Log($"slow: {playerBall.velocity} : {playerBall.velocity.magnitude}");
         return playerBall.velocity.magnitude < velocityThreshold;
     }
+
+    
 }

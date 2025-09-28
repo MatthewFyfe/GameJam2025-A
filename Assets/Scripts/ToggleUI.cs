@@ -12,6 +12,23 @@ public class ToggleUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             myCanvas.enabled = !myCanvas.enabled;
+            toggleCursorLock();
         }
+    }
+
+    public static void toggleCursorLock()
+    {
+        // Lock the cursor to the center of the screen
+        if(Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;    
+        }
+
+        // Hide the cursor
+        Cursor.visible = !Cursor.visible;
     }
 }
