@@ -74,7 +74,12 @@ public class ControlPointSP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //enable cheat mode?
+        if(Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.LeftShift))
+        {
+            groundedMode = !groundedMode;
+            velocityMode = !velocityMode;
+        }
 
         //are we dead?
         if(playerHP <= 0 && aliveFlag)
