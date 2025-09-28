@@ -35,6 +35,8 @@ public class ControlPointSP : MonoBehaviour
     public AudioClip damageDragonClip;
     public AudioClip dragonDieClip;
     public AudioClip dragonBattleClip;
+    public AudioClip leavesClip;
+    public AudioClip stoneClip;
 
     bool aliveFlag = true;
 
@@ -180,6 +182,8 @@ public class ControlPointSP : MonoBehaviour
         else if (pm.name.Contains("Stone"))
         {
             playerBall.angularDrag = angularDrag_default;
+            mainCameraAudio.clip = stoneClip;
+            mainCameraAudio.Play();
         }
         else if (pm.name.Contains("Rough"))
         {
@@ -207,6 +211,18 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.clip = damageDragonClip;
             mainCameraAudio.Play();
         }
+        else if (pm.name.Contains("Leaves"))
+        {
+            mainCameraAudio.clip = leavesClip;
+            mainCameraAudio.Play();
+        }
+        else if (pm.name.Contains("Wood"))
+        {
+            mainCameraAudio.clip = stoneClip;
+            mainCameraAudio.Play();
+        }
+
+        //*****
 
          //did we win?
         if(dragonHP <= 0 && aliveFlag)
