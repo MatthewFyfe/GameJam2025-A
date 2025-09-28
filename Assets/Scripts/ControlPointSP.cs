@@ -209,7 +209,7 @@ public class ControlPointSP : MonoBehaviour
         }
 
          //did we win?
-        if(dragonHP <= 3 && aliveFlag)
+        if(dragonHP <= 0 && aliveFlag)
         {
             victoryTXT.text = "VICTORY ACHIEVED";
 

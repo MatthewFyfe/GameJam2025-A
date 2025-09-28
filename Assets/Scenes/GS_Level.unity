@@ -921,6 +921,63 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &328813024
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 283
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433678757531835404, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778538773706245814, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
+      propertyPath: m_Name
+      value: GolfSouls_club_HolyDriver
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da6a4f36f9e03224aad16fa1c83c95ba, type: 3}
 --- !u!4 &357800970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7525591686334426639, guid: ee6910fa2ca3452488997c66c4bf5263, type: 3}
@@ -3396,7 +3453,7 @@ PrefabInstance:
     - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
       propertyPath: dragonDieClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9abff57e4b8987248bce0f7161d18f8b, type: 3}
+      objectReference: {fileID: 8300000, guid: abc2bb780b8540a49be20097bd965cc3, type: 3}
     - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
       propertyPath: mainCameraAudio
       value: 
@@ -3625,3 +3682,4 @@ SceneRoots:
   - {fileID: 178162294}
   - {fileID: 1720462565}
   - {fileID: 5220774313027530896}
+  - {fileID: 328813024}
