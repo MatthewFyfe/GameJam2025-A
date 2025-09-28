@@ -14,22 +14,24 @@ public class Zomball : MonoBehaviour
 
     public Material mod_material;
 
-    float spawnFrame;
+    float spawnTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnFrame = Time.frameCount;
+        spawnTime = Time.time;
+
+        InvokeRepeating("fireAtPlayer", 5f, 5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //see if it is time to fire again
-        if(Time.frameCount % 3000 == 0)
-        {
-            fireAtPlayer();
-        }
+        // //see if it is time to fire again
+        // if(Time.frameCount % 3000 == 0)
+        // {
+        //     fireAtPlayer();
+        // }
         
 
         //see if it is time to expire

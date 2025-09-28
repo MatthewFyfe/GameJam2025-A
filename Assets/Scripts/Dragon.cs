@@ -9,7 +9,7 @@ public class Dragon : MonoBehaviour
 
     public float rotationSpeed = 0.001f;
 
-    float spawnFrame;
+    float spawnTime;
 
     public Transform fireball_spawn_1;
     public Transform fireball_spawn_2;
@@ -18,7 +18,7 @@ public class Dragon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnFrame = Time.frameCount;
+        spawnTime = Time.time;
     }
 
     // Update is called once per frame
@@ -36,8 +36,9 @@ public class Dragon : MonoBehaviour
         }
 
         //shoot fireballs
-        if(Time.frameCount % 6000 == 0)
+        if(Time.time - spawnTime >= 10f)
         {
+            spawnTime = Time.time;
             shootFireballs(fireball_spawn_1);
             shootFireballs(fireball_spawn_2);
             shootFireballs(fireball_spawn_3);

@@ -12,7 +12,7 @@ public class Fireball : MonoBehaviour
 
     public Material mod_material;
 
-    float spawnFrame;
+    float spawnTime;
 
 
     // Start is called before the first frame update
@@ -20,27 +20,29 @@ public class Fireball : MonoBehaviour
     {
         //fire itself forwards
         rb.velocity = transform.forward * speed;
-        //fireAtPlayer();
-        spawnFrame = Time.frameCount;
+        
+        spawnTime = Time.time;
 
         if(playerTarget == null)
         {
             playerTarget = GameObject.FindWithTag("Player");
         }
+
+        InvokeRepeating("fireAtPlayer", 5f, 5f);
     }
 
     // Update is called once per frame
     void Update()
     {
         //see if it is time to fire again
-        if(Time.frameCount % 3000 == 0)
-        {
-            fireAtPlayer();
-        }
+        // if(Time.frameCount % 3000 == 0)
+        // {
+        //     fireAtPlayer();
+        // }
         
 
-        //see if it is time to expire
-        if(Time.frameCount - spawnFrame > 10000)
+        //see if it is time to expire (like 15 seconds?)
+        if(Time.time - spawnTime > 15f)
         {
             Destroy(gameObject.transform.parent.gameObject);
         }
