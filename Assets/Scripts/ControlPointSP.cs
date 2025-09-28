@@ -37,11 +37,14 @@ public class ControlPointSP : MonoBehaviour
     public AudioClip dragonBattleClip;
     public AudioClip leavesClip;
     public AudioClip stoneClip;
+    public AudioClip holyClip;
+    public AudioClip ninjaClip;
 
     bool aliveFlag = true;
 
     bool canShoot = true;
     bool grounded = true;
+    bool velocityReady = true;
 
     public bool groundedMode = false;
     public float groundedThreshold = 1.0f;
@@ -53,6 +56,14 @@ public class ControlPointSP : MonoBehaviour
     public TMP_Text groundedTXT;
     public TMP_Text velocityTXT;
     public TMP_Text victoryTXT;
+    public TMP_Text scoreTXT;
+    public TMP_Text scoreFinalTXT;
+
+    int playerScore = 0;
+
+    public Dragon Dragon;
+
+    bool disableShooting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +74,8 @@ public class ControlPointSP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //are we dead?
         if(playerHP <= 0 && aliveFlag)
         {
@@ -105,7 +118,18 @@ public class ControlPointSP : MonoBehaviour
         }
         else
         {
-
+            grounded = true;
+            if(canShoot)
+            {
+                groundedTXT.text = "HolyDriver: ready!";
+                groundedTXT.color = Color.yellow;
+            }
+            else
+            {
+                groundedTXT.text = "HolyDriver: charging..";
+                groundedTXT.color = Color.red;
+            }
+        
         }
 
         //are we fast (if we care)
@@ -113,20 +137,22 @@ public class ControlPointSP : MonoBehaviour
         {
             if(IsVelocitySlow())
             {
-                canShoot = true;
+                velocityReady = true;
                 velocityTXT.text = "Velocity: just right";
                 velocityTXT.color = Color.white;
             }
             else
             {
-                canShoot = false;
+                velocityReady = false;
                 velocityTXT.text = "Velocity: too fast";
                 velocityTXT.color = Color.red;
             }
         }
         else
         {
-
+            velocityReady = true;
+            velocityTXT.text = "Velocity: Shinobi mode!";
+            velocityTXT.color = Color.magenta;
         }
 
         // if (!IsOwner)
@@ -161,7 +187,7 @@ public class ControlPointSP : MonoBehaviour
             line.SetPosition(1, playerController.transform.position + playerController.transform.forward * 4f);
         }
 
-        if(Input.GetMouseButtonUp(0) && canShoot && grounded)
+        if(Input.GetMouseButtonUp(0) && canShoot && grounded && velocityReady)
         {
             playerBall.velocity = playerController.transform.forward * shootPower;
             line.gameObject.SetActive(false);
@@ -170,11 +196,15 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.clip = golfClip;
             mainCameraAudio.Play();
 
+            playerScore++;
+            scoreTXT.text = $"Score: {playerScore}";
+
             canShoot = false;
 
         }
     }
 
+    #region collisionAndSFX
     //Play SFX if needed, update drag to stop rolling on slopes
     public void HandleCollision(Collision collision)
     {
@@ -216,6 +246,7 @@ public class ControlPointSP : MonoBehaviour
             //damage dragon
             Destroy(collision.collider.gameObject);
             dragonHP -= 1;
+            Dragon.slowRotation();
             mainCameraAudio.clip = damageDragonClip;
             mainCameraAudio.Play();
         }
@@ -229,12 +260,34 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.clip = stoneClip;
             mainCameraAudio.Play();
         }
+        else if (pm.name.Contains("HolyDriver"))
+        {
+            mainCameraAudio.clip = holyClip;
+            mainCameraAudio.Play();
+
+            Destroy(collision.collider.gameObject);
+            groundedMode = false;
+            canShoot = true;
+        }
+        else if (pm.name.Contains("ShinobiPutter"))
+        {
+            mainCameraAudio.clip = ninjaClip;
+            mainCameraAudio.Play();
+
+            Destroy(collision.collider.gameObject);
+            velocityMode = false;
+            canShoot = true;
+        }
 
         //*****
 
          //did we win?
         if(dragonHP <= 0 && aliveFlag)
         {
+            Pause();
+            scoreFinalTXT = scoreTXT;
+            Dragon.dragon_music.Stop();
+
             victoryTXT.text = "VICTORY ACHIEVED";
 
             aliveFlag = false;
@@ -243,8 +296,10 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.Play();
 
             diedCanvas.SetActive(true);
+            //this.enabled = false;
         }
     }
+    #endregion
 
     public bool IsGrounded()
     {
@@ -258,5 +313,13 @@ public class ControlPointSP : MonoBehaviour
         return playerBall.velocity.magnitude < velocityThreshold;
     }
 
+    public void Pause()
+    {
+        Time.timeScale = 0; // Stops time-dependent operations
+        //isPaused = true;
+        
+    }
+
+    
     
 }

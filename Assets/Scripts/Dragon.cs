@@ -15,6 +15,8 @@ public class Dragon : MonoBehaviour
     public Transform fireball_spawn_2;
     public Transform fireball_spawn_3;
 
+    public AudioSource dragon_music;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +50,10 @@ public class Dragon : MonoBehaviour
     void shootFireballs(Transform spawnPos)
     {
         GameObject projectile = Instantiate(fireballprefab, spawnPos.position, spawnPos.rotation);
+    }
+
+    public void slowRotation()
+    {
+        rotationSpeed = rotationSpeed / 2;
     }
 }

@@ -22,6 +22,14 @@ public class MainMenu : MonoBehaviour
 
     public void Menu()
     {
+        UnPause();
+        ControlPointSP.playerHP = 10;
+        ControlPointSP.dragonHP = 3;
         SceneManager.LoadScene("GS_MainMenu");
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
     }
 }
