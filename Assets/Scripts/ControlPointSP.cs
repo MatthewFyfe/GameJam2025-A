@@ -103,6 +103,10 @@ public class ControlPointSP : MonoBehaviour
                 groundedTXT.color = Color.red;
             }
         }
+        else
+        {
+
+        }
 
         //are we fast (if we care)
         if(velocityMode)
@@ -119,6 +123,10 @@ public class ControlPointSP : MonoBehaviour
                 velocityTXT.text = "Velocity: too fast";
                 velocityTXT.color = Color.red;
             }
+        }
+        else
+        {
+
         }
 
         // if (!IsOwner)
