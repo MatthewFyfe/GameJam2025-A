@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using FishNet.Object;
+using TMPro;
 
 public class ControlPointSP : MonoBehaviour
 {
@@ -31,6 +32,19 @@ public class ControlPointSP : MonoBehaviour
     public AudioClip burnClip;
 
     bool aliveFlag = true;
+
+    bool canShoot = true;
+    bool grounded = true;
+
+    public bool groundedMode = false;
+    public float groundedThreshold = 1.0f;
+    public LayerMask groundLayer;
+
+    public bool velocityMode = false;
+    public float velocityThreshold = 1.5f;
+
+    public TMP_Text groundedTXT;
+    public TMP_Text velocityTXT;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +78,41 @@ public class ControlPointSP : MonoBehaviour
             playerHP -= 1;
         }
 
+        //are we grounded (if we care)
+        if(groundedMode)
+        {
+            if(IsGrounded())
+            {
+                //Debug.Log("grounded");
+                grounded = true;
+                groundedTXT.text = "OnGround: yes";
+                groundedTXT.color = Color.white;
+            }
+            else
+            {
+                grounded = false;
+                groundedTXT.text = "OnGround: no";
+                groundedTXT.color = Color.red;
+            }
+        }
+
+        //are we fast (if we care)
+        if(velocityMode)
+        {
+            if(IsVelocitySlow())
+            {
+                canShoot = true;
+                velocityTXT.text = "Velocity: just right";
+                velocityTXT.color = Color.white;
+            }
+            else
+            {
+                canShoot = false;
+                velocityTXT.text = "Velocity: too fast";
+                velocityTXT.color = Color.red;
+            }
+        }
+
         // if (!IsOwner)
         //     return;
 
@@ -77,13 +126,18 @@ public class ControlPointSP : MonoBehaviour
 
         playerController.transform.position = playerBall.position;
 
-        if(Input.GetMouseButton(0))
+        //if(Input.GetMouseButton(0) && canShoot && grounded)
+        if(true)
         {
             xRot += Input.GetAxis("Mouse X") * rotationSpeed;
             yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
-            if(yRot < -35f)
+            if(yRot < -45f)
             {
-                yRot = -35f;
+                yRot = -45f;
+            }
+            if(yRot > 45f)
+            {
+                yRot = 45f;
             }
             playerController.transform.rotation = Quaternion.Euler(yRot, xRot, 0f);
             line.gameObject.SetActive(true);
@@ -91,7 +145,7 @@ public class ControlPointSP : MonoBehaviour
             line.SetPosition(1, playerController.transform.position + playerController.transform.forward * 4f);
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && canShoot && grounded)
         {
             playerBall.velocity = playerController.transform.forward * shootPower;
             line.gameObject.SetActive(false);
@@ -100,12 +154,16 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.clip = golfClip;
             mainCameraAudio.Play();
 
+            canShoot = false;
+
         }
     }
 
     //Play SFX if needed, update drag to stop rolling on slopes
     public void HandleCollision(Collision collision)
     {
+        canShoot = true;
+
         Debug.Log(collision.collider.material);
         var pm = collision.collider.material;
 
@@ -135,5 +193,17 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.clip = burnClip;
             mainCameraAudio.Play();
         }
+    }
+
+    public bool IsGrounded()
+    {
+        //Debug.DrawRay(transform.position, Vector3.down * 10, Color.red);
+        return Physics.Raycast(playerBall.transform.position, Vector3.down, groundedThreshold, groundLayer);
+    }
+
+    public bool IsVelocitySlow()
+    {
+        //Debug.Log($"slow: {playerBall.velocity} : {playerBall.velocity.magnitude}");
+        return playerBall.velocity.magnitude < velocityThreshold;
     }
 }
