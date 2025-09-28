@@ -260,6 +260,14 @@ MonoBehaviour:
   angularDrag_default: 2
   line: {fileID: 1547940281016661218}
   playerController: {fileID: 4555655275210027675}
+  respawnPoint: {fileID: 0}
+  diedCanvas: {fileID: 0}
+  mainCameraAudio: {fileID: 0}
+  diedClip: {fileID: 8300000, guid: cf3680e7450ee1b4d97889b2ff4d4835, type: 3}
+  golfClip: {fileID: 8300000, guid: 173d3f0a2e5979044b0bf7587d9e7b91, type: 3}
+  oobClip: {fileID: 8300000, guid: 3659e745a9f1f0c4db628d764f5815f8, type: 3}
+  zombieClip: {fileID: 8300000, guid: 2e13169a8f83e4d4a8f446b4d1a17ec2, type: 3}
+  burnClip: {fileID: 8300000, guid: a052bd4c6c36dbc45bc3f54dd186d46d, type: 3}
 --- !u!1 &8647377218772432768
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +284,7 @@ GameObject:
   - component: {fileID: 7665976241270592027}
   m_Layer: 0
   m_Name: GS_PlayerGolfBall
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,4 +415,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d201ff4905ece34f88d7167ebe86b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cp_ref: {fileID: 0}
+  cp_ref: {fileID: 3388350028916486379}

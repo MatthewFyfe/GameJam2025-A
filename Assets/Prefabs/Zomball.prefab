@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9168495810754030354}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: Zomball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 7806920144526206135}
   - component: {fileID: 5607652637994879123}
   - component: {fileID: 5041226932137475066}
-  - component: {fileID: 8334390625666347047}
   m_Layer: 0
   m_Name: GS_PlayerGolfBall
   m_TagString: Untagged
@@ -242,7 +241,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8345a7d8c40c988498a4a6d60b3837c1, type: 2}
+  - {fileID: 2100000, guid: 9be0a7a1c5a22334dbee3126aa1d556a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -271,7 +270,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8647377218772432768}
-  m_Material: {fileID: 13400000, guid: d554b5c4cac5e7c47add0446e2871e75, type: 2}
+  m_Material: {fileID: 13400000, guid: 0a69b759f1560fc42b13541920602a33, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -312,19 +311,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8334390625666347047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647377218772432768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c02ec739aa124384cb57caf843a022b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTarget: {fileID: 0}
-  speed: 30
-  rb: {fileID: 5041226932137475066}
-  mod_material: {fileID: 2100000, guid: 8345a7d8c40c988498a4a6d60b3837c1, type: 2}

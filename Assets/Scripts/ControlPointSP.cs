@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ControlPointSP : MonoBehaviour
 {
+    public static int playerHP = 10;
+
     float xRot, yRot = 0f;
 
     public Rigidbody playerBall;
@@ -18,6 +20,17 @@ public class ControlPointSP : MonoBehaviour
     public LineRenderer line;
 
     public GameObject playerController;
+    public GameObject respawnPoint;
+    public GameObject diedCanvas;
+
+    public AudioSource mainCameraAudio;
+    public AudioClip diedClip;
+    public AudioClip golfClip;
+    public AudioClip oobClip;
+    public AudioClip zombieClip;
+    public AudioClip burnClip;
+
+    bool aliveFlag = true;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +41,29 @@ public class ControlPointSP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //are we dead?
+        if(playerHP <= 0 && aliveFlag)
+        {
+            aliveFlag = false;
+            Debug.Log("YOU DIED");
+            mainCameraAudio.clip = diedClip;
+            mainCameraAudio.Play();
+
+            diedCanvas.SetActive(true);
+
+        }
+
+        //are we out of bounds?
+        if(playerBall.transform.position.y < -50)
+        {
+            mainCameraAudio.clip = oobClip;
+            mainCameraAudio.Play();
+
+            playerBall.transform.position = respawnPoint.transform.position;
+            playerBall.velocity = Vector3.zero;
+            playerHP -= 1;
+        }
+
         // if (!IsOwner)
         //     return;
 
@@ -59,13 +95,18 @@ public class ControlPointSP : MonoBehaviour
         {
             playerBall.velocity = playerController.transform.forward * shootPower;
             line.gameObject.SetActive(false);
+
+            //golf sfx
+            mainCameraAudio.clip = golfClip;
+            mainCameraAudio.Play();
+
         }
     }
 
     //Play SFX if needed, update drag to stop rolling on slopes
     public void HandleCollision(Collision collision)
     {
-        //Debug.Log(collision.collider.material);
+        Debug.Log(collision.collider.material);
         var pm = collision.collider.material;
 
         if (pm.name.Contains("Grass"))
@@ -79,6 +120,20 @@ public class ControlPointSP : MonoBehaviour
         else if (pm.name.Contains("Rough"))
         {
             playerBall.angularDrag = angularDrag_default * 200;
+        }
+        else if (pm.name.Contains("Zomball"))
+        {
+            //take damage from fireball/zomball
+            playerHP -= 1;
+            mainCameraAudio.clip = zombieClip;
+            mainCameraAudio.Play();
+        }
+        else if (pm.name.Contains("Fireball"))
+        {
+            //take damage from fireball/zomball
+            playerHP -= 1;
+            mainCameraAudio.clip = burnClip;
+            mainCameraAudio.Play();
         }
     }
 }
