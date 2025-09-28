@@ -3387,9 +3387,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
+      propertyPath: dragonDieClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9abff57e4b8987248bce0f7161d18f8b, type: 3}
+    - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
       propertyPath: mainCameraAudio
       value: 
       objectReference: {fileID: 213520877}
+    - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
+      propertyPath: damageDragonClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 83059510076802340a61cccb182044df, type: 3}
+    - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
+      propertyPath: dragonBattleClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cf3680e7450ee1b4d97889b2ff4d4835, type: 3}
     - target: {fileID: 3388350028916486379, guid: 4a9b7c4391f35814d86dd80f5a553db3, type: 3}
       propertyPath: groundedThreshold
       value: 1

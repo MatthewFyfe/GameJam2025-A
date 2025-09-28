@@ -7,6 +7,7 @@ using TMPro;
 public class ControlPointSP : MonoBehaviour
 {
     public static int playerHP = 10;
+    public static int dragonHP = 3;
 
     float xRot, yRot = 0f;
 
@@ -30,6 +31,9 @@ public class ControlPointSP : MonoBehaviour
     public AudioClip oobClip;
     public AudioClip zombieClip;
     public AudioClip burnClip;
+    public AudioClip damageDragonClip;
+    public AudioClip dragonDieClip;
+    public AudioClip dragonBattleClip;
 
     bool aliveFlag = true;
 
@@ -192,6 +196,20 @@ public class ControlPointSP : MonoBehaviour
             playerHP -= 1;
             mainCameraAudio.clip = burnClip;
             mainCameraAudio.Play();
+        }
+        else if (pm.name.Contains("Weakpoint"))
+        {
+            //damage dragon
+            Destroy(collision.collider.gameObject);
+            dragonHP -= 1;
+            mainCameraAudio.clip = damageDragonClip;
+            mainCameraAudio.Play();
+        }
+
+         //did we win?
+        if(dragonHP <= 0)
+        {
+            
         }
     }
 
