@@ -16,6 +16,7 @@ public class Dragon : MonoBehaviour
     public Transform fireball_spawn_3;
 
     public AudioSource dragon_music;
+    public AudioSource dragon_stomps;
 
     // Start is called before the first frame update
     void Start()
