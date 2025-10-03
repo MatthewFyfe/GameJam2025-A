@@ -81,15 +81,25 @@ public class ControlPointSP : MonoBehaviour
             velocityMode = !velocityMode;
         }
 
+        //unstuck?
+        if(Input.GetKey(KeyCode.U) && Input.GetKey(KeyCode.LeftShift))
+        {
+            canShoot = true;
+            grounded = true;
+            velocityReady = true;
+        }
+
         //are we dead?
         if(playerHP <= 0 && aliveFlag)
         {
+            scoreFinalTXT.text = $"Score: {playerScore}";
             aliveFlag = false;
             //Debug.Log("YOU DIED");
             mainCameraAudio.clip = diedClip;
             mainCameraAudio.Play();
 
             diedCanvas.SetActive(true);
+            ToggleUI.toggleCursorLock();
 
         }
 
@@ -124,8 +134,9 @@ public class ControlPointSP : MonoBehaviour
         else
         {
             grounded = true;
-            if(canShoot)
+            if(canShoot || IsGrounded())
             {
+                canShoot = true;
                 groundedTXT.text = "HolyDriver: ready!";
                 groundedTXT.color = Color.yellow;
             }
@@ -178,13 +189,13 @@ public class ControlPointSP : MonoBehaviour
         {
             xRot += Input.GetAxis("Mouse X") * rotationSpeed;
             yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
-            if(yRot < -45f)
+            if(yRot < -55f)
             {
-                yRot = -45f;
+                yRot = -55f;
             }
-            if(yRot > 45f)
+            if(yRot > 55f)
             {
-                yRot = 45f;
+                yRot = 55f;
             }
             playerController.transform.rotation = Quaternion.Euler(yRot, xRot, 0f);
             line.gameObject.SetActive(true);
@@ -290,7 +301,7 @@ public class ControlPointSP : MonoBehaviour
         if(dragonHP <= 0 && aliveFlag)
         {
             Pause();
-            scoreFinalTXT = scoreTXT;
+            scoreFinalTXT.text = $"Score: {playerScore}";
             Dragon.dragon_music.Stop();
 
             victoryTXT.text = "VICTORY ACHIEVED";
@@ -301,6 +312,7 @@ public class ControlPointSP : MonoBehaviour
             mainCameraAudio.Play();
 
             diedCanvas.SetActive(true);
+            ToggleUI.toggleCursorLock();
             //this.enabled = false;
         }
     }
